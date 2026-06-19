@@ -6,15 +6,29 @@
 
   <style>
     body {
-     <div class="slider">
-  <img class="slide active" src="https://picsum.photos/900/400?1">
-  <img class="slide" src="https://picsum.photos/900/400?2">
-  <img class="slide" src="https://picsum.photos/900/400?3">
-</div>
       margin: 0;
       font-family: Arial, sans-serif;
       line-height: 1.6;
       background: linear-gradient(135deg, #74ebd5, #9face6);
+    }
+
+    /* 🔥 슬라이드 */
+    .slider {
+      width: 100%;
+      height: 400px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .slide {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+      display: none;
+    }
+
+    .slide.active {
+      display: block;
     }
 
     /* 상단 */
@@ -61,12 +75,12 @@
       border-radius: 5px;
     }
 
-    /* 히어로 (핵심 변화) */
+    /* 히어로 */
     .hero {
       text-align: center;
-      margin-top: 50px;
+      margin-top: 30px;
       background: white;
-      padding: 60px;
+      padding: 50px;
       border-radius: 20px;
       box-shadow: 0 15px 40px rgba(0,0,0,0.2);
     }
@@ -88,6 +102,13 @@
 
 <body>
 
+  <!-- 🔥 슬라이드 (맨 위) -->
+  <div class="slider">
+    <img class="slide active" src="https://picsum.photos/1200/400?1">
+    <img class="slide" src="https://picsum.photos/1200/400?2">
+    <img class="slide" src="https://picsum.photos/1200/400?3">
+  </div>
+
   <header>
     <h1>우리회사</h1>
     <p>최고의 솔루션을 제공합니다</p>
@@ -102,7 +123,6 @@
 
   <div class="container">
 
-    <!-- 🔥 새로 강조된 메인 영역 -->
     <div class="hero">
       <h1>내 첫 웹사이트 🚀</h1>
       <p>GitHub Pages 성공!</p>
@@ -114,8 +134,7 @@
 
     <h2>회사 소개</h2>
     <p>
-      우리는 고객에게 최적의 IT 솔루션을 제공하는 회사입니다.
-      웹 개발, 시스템 구축, 유지보수를 전문으로 합니다.
+      우리는 고객에게 최적의 IT 솔루션을 제공합니다.
     </p>
 
     <h2>사업 분야</h2>
@@ -136,6 +155,25 @@
   <footer>
     © 2026 우리회사. All rights reserved.
   </footer>
+
+  <!-- 🔥 슬라이드 JS -->
+  <script>
+    let index = 0;
+    const slides = document.querySelectorAll('.slide');
+
+    function showSlide() {
+      slides.forEach(s => s.classList.remove('active'));
+      slides[index].classList.add('active');
+    }
+
+    function nextSlide() {
+      index = (index + 1) % slides.length;
+      showSlide();
+    }
+
+    showSlide();
+    setInterval(nextSlide, 3000);
+  </script>
 
 </body>
 </html>
