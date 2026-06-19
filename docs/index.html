@@ -158,22 +158,23 @@
 
   <!-- 🔥 슬라이드 JS -->
   <script>
-    let index = 0;
-    const slides = document.querySelectorAll('.slide');
+window.onload = function () {
+  let index = 0;
+  const slides = document.querySelectorAll('.slide');
 
-    function showSlide() {
-      slides.forEach(s => s.classList.remove('active'));
-      slides[index].classList.add('active');
-    }
+  function showSlide() {
+    slides.forEach(s => s.classList.remove('active'));
+    slides[index].classList.add('active');
+  }
 
-    function nextSlide() {
-      index = (index + 1) % slides.length;
-      showSlide();
-    }
-
+  function nextSlide() {
+    index = (index + 1) % slides.length;
     showSlide();
-    setInterval(nextSlide, 3000);
-  </script>
+  }
 
+  showSlide();
+  setInterval(nextSlide, 3000);
+};
+</script>
 </body>
 </html>
