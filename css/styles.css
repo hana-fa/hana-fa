@@ -11022,3 +11022,7 @@ body {
 .address strong {
   font-size: 1.2rem;
 }
+nav {
+  background-color: #A8E6CF;
+  padding: 15px;
+}
