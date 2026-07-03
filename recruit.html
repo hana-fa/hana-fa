@@ -1,4 +1,4 @@
-<div class="tab-container">
+<div class="tab-wrapper">
 
     <!-- 버튼 -->
     <div class="tab-menu">
@@ -9,13 +9,8 @@
     <!-- 이미지 -->
     <div class="tab-content">
 
-        <div id="talent" class="tab-box show">
-            <img src="assets/img/c1.png">
-        </div>
-
-        <div id="process" class="tab-box">
-            <img src="assets/img/c2.png">
-        </div>
+        <img id="talent" class="tab-img show" src="assets/img/c1.png">
+        <img id="process" class="tab-img" src="assets/img/c2.png">
 
     </div>
 
@@ -23,94 +18,82 @@
 
 <style>
 
-/* 🔥 전체 위치를 아래로 내림 */
-.tab-container {
-    display: flex;
-    gap: 40px;
-    align-items: flex-start;   /* ← 위 정렬로 변경 (중앙 → 위 기준) */
-    justify-content: center;
-    padding-top: 80px;         /* 🔥 여기로 위치 아래로 내림 */
+/* 전체 */
+.tab-wrapper{
+    text-align:center;
+    padding-top:80px;   /* 위에서 아래로 내림 */
 }
 
 /* 버튼 */
-.tab-menu {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+.tab-menu{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    margin-bottom:30px;
 }
 
-/* 버튼 스타일 */
-.tab-btn {
-    padding: 12px 18px;
-    border: none;
-    cursor: pointer;
-    background: #f2f2f2;
-    border-radius: 6px;
-    transition: 0.3s;
+/* 기본 버튼 */
+.tab-btn{
+    padding:10px 16px;
+    border:none;
+    background:#f2f2f2;
+    cursor:pointer;
+    border-radius:5px;
 }
 
-.tab-btn.active {
-    background: #9e9e9e;
-    color: white;
+/* 선택된 버튼 */
+.tab-btn.active{
+    background:#9e9e9e;
+    color:white;
 }
 
-/* 🔥 이미지 크게 */
-.tab-content img {
-    width: 85%;          /* ← 60% → 85%로 확대 */
-    max-width: 1200px;   /* ← 더 크게 */
+/* 이미지 */
+.tab-img{
+    display:none;
+    width:85%;          /* 🔥 크게 */
+    max-width:1200px;
 }
 
-/* 기본 숨김 */
-.tab-box {
-    display: none;
-    text-align: center;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: 0.6s;
+/* 보이는 이미지 */
+.tab-img.show{
+    display:block;
 }
 
-/* 활성 */
-.tab-box.show {
-    display: block;
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* 📱 모바일 */
-@media (max-width: 768px) {
-    .tab-container {
-        flex-direction: column;
-        padding-top: 40px;
+/* 모바일 */
+@media (max-width:768px){
+    .tab-wrapper{
+        padding-top:40px;
     }
 
-    .tab-menu {
-        flex-direction: row;
+    .tab-img{
+        width:95%;
     }
 
-    .tab-btn {
-        flex: 1;
-    }
-
-    .tab-content img {
-        width: 95%;
+    .tab-menu{
+        flex-direction:row;
     }
 }
 
 </style>
 
 <script>
-function showTab(id, btn) {
 
-    document.querySelectorAll('.tab-box').forEach(el => {
-        el.classList.remove('show');
+function showTab(id, btn){
+
+    // 이미지 숨기기
+    document.querySelectorAll('.tab-img').forEach(img=>{
+        img.classList.remove('show');
     });
 
+    // 선택 이미지 표시
     document.getElementById(id).classList.add('show');
 
-    document.querySelectorAll('.tab-btn').forEach(b => {
+    // 버튼 active 변경
+    document.querySelectorAll('.tab-btn').forEach(b=>{
         b.classList.remove('active');
     });
 
     btn.classList.add('active');
 }
+
 </script>
