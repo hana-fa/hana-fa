@@ -1,27 +1,109 @@
-<div style="display: flex; flex-direction: column; align-items: center; gap: 20px;">
+<div class="tab-container">
 
-    <img src="assets/img/c1.png"
-         style="width: 60%; max-width: 900px;
-                opacity: 0;
-                animation: fadeIn 1s forwards;">
+    <!-- 왼쪽 버튼 -->
+    <div class="tab-menu">
+        <button class="tab-btn active" onclick="showTab('talent', this)">인재상</button>
+        <button class="tab-btn" onclick="showTab('process', this)">채용절차</button>
+    </div>
 
-    <img src="assets/img/c2.png"
-         style="width: 60%; max-width: 900px;
-                opacity: 0;
-                animation: fadeIn 1s forwards;
-                animation-delay: 2s;">
+    <!-- 오른쪽 콘텐츠 -->
+    <div class="tab-content">
+
+        <img id="talent" src="assets/img/c1.png" class="tab-img show">
+        <img id="process" src="assets/img/c2.png" class="tab-img">
+
+    </div>
 
 </div>
 
 <style>
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
+/* 전체 레이아웃 */
+.tab-container {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+}
+
+/* 왼쪽 버튼 */
+.tab-menu {
+    width: 180px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.tab-btn {
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    background: #eee;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+/* 클릭된 버튼 */
+.tab-btn.active {
+    background: #0d6efd;
+    color: white;
+}
+
+/* 오른쪽 이미지 */
+.tab-content {
+    flex: 1;
+    text-align: center;
+}
+
+.tab-img {
+    width: 60%;
+    max-width: 900px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: 0.5s;
+    display: none;
+}
+
+/* 보이는 이미지 */
+.tab-img.show {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 📱 모바일 반응형 */
+@media (max-width: 768px) {
+    .tab-container {
+        flex-direction: column;
+        align-items: center;
     }
-    to {
-        opacity: 1;
-        transform: translateY(0);
+
+    .tab-menu {
+        width: 100%;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .tab-btn {
+        flex: 1;
+    }
+
+    .tab-img {
+        width: 90%;
     }
 }
 </style>
+
+<script>
+function showTab(id, btn) {
+    // 이미지 전환
+    document.querySelectorAll('.tab-img').forEach(img => {
+        img.classList.remove('show');
+    });
+    document.getElementById(id).classList.add('show');
+
+    // 버튼 활성화
+    document.querySelectorAll('.tab-btn').forEach(b => {
+        b.classList.remove('active');
+    });
+    btn.classList.add('active');
+}
+</script>
