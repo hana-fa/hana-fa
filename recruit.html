@@ -22,20 +22,24 @@
 </div>
 
 <style>
+
+/* 🔥 전체 위치를 아래로 내림 */
 .tab-container {
     display: flex;
     gap: 40px;
-    align-items: center;
+    align-items: flex-start;   /* ← 위 정렬로 변경 (중앙 → 위 기준) */
     justify-content: center;
-    min-height: 80vh;
+    padding-top: 80px;         /* 🔥 여기로 위치 아래로 내림 */
 }
 
+/* 버튼 */
 .tab-menu {
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
 
+/* 버튼 스타일 */
 .tab-btn {
     padding: 12px 18px;
     border: none;
@@ -50,11 +54,13 @@
     color: white;
 }
 
+/* 🔥 이미지 크게 */
 .tab-content img {
-    width: 60%;
-    max-width: 900px;
+    width: 85%;          /* ← 60% → 85%로 확대 */
+    max-width: 1200px;   /* ← 더 크게 */
 }
 
+/* 기본 숨김 */
 .tab-box {
     display: none;
     text-align: center;
@@ -63,18 +69,18 @@
     transition: 0.6s;
 }
 
+/* 활성 */
 .tab-box.show {
     display: block;
     opacity: 1;
     transform: translateY(0);
 }
 
-/* 모바일 */
+/* 📱 모바일 */
 @media (max-width: 768px) {
     .tab-container {
         flex-direction: column;
-        min-height: auto;
-        padding: 40px 0;
+        padding-top: 40px;
     }
 
     .tab-menu {
@@ -86,9 +92,10 @@
     }
 
     .tab-content img {
-        width: 90%;
+        width: 95%;
     }
 }
+
 </style>
 
 <script>
