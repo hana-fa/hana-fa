@@ -231,6 +231,80 @@ function showTab(id, btn){
 
     <button class="slider-btn btn-left" onclick="moveSlider(-1)">&#10094;</button>
 
+   <div class="slider-wrapper" style="text-align: center; margin-top: -30px; padding-top: 0px; padding-bottom: 90px; position: relative;">
+    
+    <style>
+        /* 슬라이더 전체를 감싸는 윈도우 */
+        .slider-container {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        /* 사진들이 가로로 배치되는 통로 */
+        .slider-track {
+            display: flex;
+            align-items: center;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        /* 개별 이미지 슬롯 설정 (가운데 한 장은 500px) */
+        .slider-item {
+            min-width: 500px; 
+            max-width: 500px;
+            box-sizing: border-box;
+            padding: 0 15px;
+            transition: all 0.5s ease-in-out;
+            
+            /* 기본 상태: 작고 투명하게 */
+            transform: scale(0.85); 
+            opacity: 0.4; 
+        }
+
+        /* 🌟 가운데 활성화된 메인 사진 스타일 */
+        .slider-item.active {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .slider-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* 화살표 버튼 스타일 */
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.3);
+            color: white;
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+            z-index: 10;
+        }
+
+        .slider-btn:hover {
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+
+        /* 화살표 위치 조절 */
+        .btn-left { left: 40px; }
+        .btn-right { right: 40px; }
+    </style>
+
+    <button class="slider-btn btn-left" onclick="moveSlider(-1)">&#10094;</button>
+
     <div class="slider-container">
         <div class="slider-track" id="sliderTrack">
             <div class="slider-item"><img src="assets/img/sub1.png" alt="사진1"></div>
@@ -249,15 +323,11 @@ function showTab(id, btn){
         const totalSlides = slides.length;
 
         function updateSlider() {
-            // 1. 모든 슬라이드에서 active 클래스 제거
             for (let i = 0; i < totalSlides; i++) {
                 slides[i].classList.remove('active');
             }
-
-            // 2. 현재 정가운데 위치한 슬라이드에만 active 클래스 추가 (선명해지고 커짐)
             slides[currentIndex].classList.add('active');
 
-            // 3. 가운데 정렬을 위한 계산식 (윈도우 너비와 슬라이드 너비를 고려하여 트랙 이동)
             const containerWidth = document.querySelector('.slider-container').offsetWidth;
             const slideWidth = slides[0].offsetWidth;
             const offset = (containerWidth / 2) - (slideWidth / 2) - (currentIndex * slideWidth);
@@ -267,17 +337,14 @@ function showTab(id, btn){
 
         function moveSlider(direction) {
             currentIndex += direction;
-
             if (currentIndex >= totalSlides) {
                 currentIndex = 0;
             } else if (currentIndex < 0) {
                 currentIndex = totalSlides - 1;
             }
-
             updateSlider();
         }
 
-        // 초기 화면 구동 시 가운데 정렬 실행
         window.addEventListener('load', updateSlider);
         window.addEventListener('resize', updateSlider);
     </script>
