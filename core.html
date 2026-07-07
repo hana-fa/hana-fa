@@ -5,21 +5,19 @@
             max-width: 100%;
             height: auto;
             display: inline-block;
-            border-radius: 16px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.06);
             
-            /* 애니메이션 실행 */
+            /* 테두리와 그림자는 지우고 애니메이션만 유지합니다 */
             animation: fadeInUpOnly 1.2s ease-out forwards;
         }
 
         @keyframes fadeInUpOnly {
             from {
                 opacity: 0;
-                transform: translateY(40px);
+                transform: translateY(40px); /* 40px 아래에서 투명하게 시작 */
             }
             to {
                 opacity: 1;
-                transform: translateY(0);
+                transform: translateY(0);    /* 원래 위치로 오면서 선명해짐 */
             }
         }
     </style>
@@ -29,8 +27,6 @@
     </div>
 
 </div>
-
-
 
 
 
