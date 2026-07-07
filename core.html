@@ -156,3 +156,103 @@ function showTab(id, btn){
 ">
     ⌂
 </a>
+
+<div class="slider-wrapper" style="text-align: center; padding-top: 50px; padding-bottom: 90px; position: relative;">
+    
+    <style>
+        /* 슬라이더 전체 컨테이너 (메인 사진의 반 크기 정도 설정) */
+        .slider-container {
+            position: relative;
+            max-width: 600px; /* 메인 이미지 크기에 맞춰 조절 가능 (예: 500px~600px) */
+            margin: 0 auto;
+            overflow: hidden; /* 영역 밖으로 나가는 사진 숨김 */
+        }
+
+        /* 사진들이 가로로 배치되는 통로 */
+        .slider-track {
+            display: flex;
+            transition: transform 0.4s ease-in-out; /* 부드럽게 넘어가는 효과 */
+        }
+
+        /* 슬라이더 안의 개별 이미지 크기 설정 */
+        .slider-item {
+            min-width: 100%;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: center;
+        }
+
+        .slider-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* 이동 화살표 버튼 공통 스타일 */
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.4);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+            z-index: 10;
+        }
+
+        .slider-btn:hover {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        /* 화살표 각각의 위치 */
+        .btn-left { left: 20px; }
+        .btn-right { right: 20px; }
+    </style>
+
+    <button class="slider-btn btn-left" onclick="moveSlider(-1)">&#10094;</button>
+
+    <div class="slider-container">
+        <div class="slider-track" id="sliderTrack">
+            <div class="slider-item"><img src="assets/img/sub1.png" alt="사진1"></div>
+            <div class="slider-item"><img src="assets/img/sub2.png" alt="사진2"></div>
+            <div class="slider-item"><img src="assets/img/sub3.png" alt="사진3"></div>
+            <div class="slider-item"><img src="assets/img/sub4.png" alt="사진4"></div>
+            <div class="slider-item"><img src="assets/img/sub5.png" alt="사진4"></div>
+            <div class="slider-item"><img src="assets/img/sub6.png" alt="사진4"></div>
+        </div>
+    </div>
+
+    <button class="slider-btn btn-right" onclick="moveSlider(1)">&#10095;</button>
+
+    <script>
+        let currentIndex = 0;
+        const track = document.getElementById('sliderTrack');
+        const totalSlides = track.children.length;
+
+        function moveSlider(direction) {
+            currentIndex += direction;
+
+            // 마지막 사진에서 오른쪽을 누르면 첫 사진으로 이동
+            if (currentIndex >= totalSlides) {
+                currentIndex = 0;
+            }
+            // 첫 사진에서 왼쪽을 누르면 마지막 사진으로 이동
+            else if (currentIndex < 0) {
+                currentIndex = totalSlides - 1;
+            }
+
+            // 가로로 이동시키는 계산식
+            track.style.transform = `translateX(-${currentIndex * 100}%)`;
+        }
+    </script>
+
+</div>
+
