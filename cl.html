@@ -211,6 +211,7 @@ function showTab(id, btn){
             overflow: hidden; /* ★중요: 이 영역 밖으로 밀려난 사진들은 숨김 */
             width: 100%;
             position: relative;
+            padding: 40px 0;  
         }
 
         /* [3] 사진들이 일렬로 배치되는 실제 트랙 */
@@ -226,12 +227,14 @@ function showTab(id, btn){
             padding: 0 10px;  /* 사진 좌우 간격 */
             box-sizing: border-box;
             opacity: 0.4;     /* 기본적으로 선택 안 된 사진은 흐리게 */
-            transition: opacity 0.4s ease;
+            transform: scale(0.75);   /* 양 옆 사진 작게 */
+            transition: all 0.4s ease;
         }
 
         /* 현재 중앙에 선택된 사진만 선명하게 강조 */
         .slider-item.active {
             opacity: 1; 
+             transform: scale(1);      /* 가운데 사진 원래 크기 */  
         }
 
         /* 이미지 원본 비율 유지 스타일 */
