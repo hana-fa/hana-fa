@@ -202,7 +202,7 @@ function showTab(id, btn){
             justify-content: center;
             position: relative;
             width: 100%;
-            max-width: 900px; /* 전체 슬라이더 최대 너비 */
+            max-width: 1800px; /* 전체 슬라이더 최대 너비 */
             margin: 50px auto;
         }
 
@@ -222,7 +222,7 @@ function showTab(id, btn){
 
         /* [4] 개별 사진 아이템 크기 및 간격 설정 */
         .slider-item {
-            flex: 0 0 200px; /* 사진 한 장의 가로 크기 */
+            flex: 0 0 600px; /* 사진 한 장의 가로 크기 */
             padding: 0 10px;  /* 사진 좌우 간격 */
             box-sizing: border-box;
             opacity: 0.4;     /* 기본적으로 선택 안 된 사진은 흐리게 */
@@ -237,7 +237,8 @@ function showTab(id, btn){
         /* 이미지 원본 비율 유지 스타일 */
         .slider-item img {
             width: 100%;
-            height: auto;
+            height: 450px;
+            object-fit: cover;
             display: block;
             border-radius: 8px; /* 사진 모서리 살짝 둥글게 */
         }
@@ -269,15 +270,15 @@ function showTab(id, btn){
 
     <div class="slider-container">
         <div class="slider-track" id="sliderTrack">
-            <div class="slider-item"><img src="assets/img/cl1.png" alt="사진1"width="800" height="700"></div>
-            <div class="slider-item"><img src="assets/img/cl2.png" alt="사진2"width="800" height="700"></div>
-            <div class="slider-item"><img src="assets/img/cl3.png" alt="사진3"width="800" height="700"></div>
-            <div class="slider-item"><img src="assets/img/cl4.png" alt="사진4"width="800" height="700"></div>
-            <div class="slider-item"><img src="assets/img/cl5.png" alt="사진5"width="800" height="700"></div>
-            <div class="slider-item"><img src="assets/img/cl6.png" alt="사진6"width="800" height="700"></div>
-            <div class="slider-item"><img src="assets/img/cl7.png" alt="사진7"width="800" height="700"></div>
-            <div class="slider-item"><img src="assets/img/cl8.png" alt="사진8"width="800" height="700"></div>
-            <div class="slider-item"><img src="assets/img/cl9.png" alt="사진9"width="800" height="700"></div>
+            <div class="slider-item"><img src="assets/img/cl1.png" alt="사진1"></div>
+            <div class="slider-item"><img src="assets/img/cl2.png" alt="사진2"></div>
+            <div class="slider-item"><img src="assets/img/cl3.png" alt="사진3"></div>
+            <div class="slider-item"><img src="assets/img/cl4.png" alt="사진4"></div>
+            <div class="slider-item"><img src="assets/img/cl5.png" alt="사진5"></div>
+            <div class="slider-item"><img src="assets/img/cl6.png" alt="사진6"></div>
+            <div class="slider-item"><img src="assets/img/cl7.png" alt="사진7"></div>
+            <div class="slider-item"><img src="assets/img/cl8.png" alt="사진8"></div>
+            <div class="slider-item"><img src="assets/img/cl9.png" alt="사진9"></div>
         </div>
     </div>
 
