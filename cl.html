@@ -147,3 +147,62 @@ function showTab(id, btn){
     
   </div>
 </footer>
+
+ </style>
+
+    <button class="slider-btn btn-left" onclick="moveSlider(-1)">&#10094;</button>
+
+    <div class="slider-container">
+        <div class="slider-track" id="sliderTrack">
+            <div class="slider-item"><img src="assets/img/cl1.png" alt="사진1"></div>
+            <div class="slider-item"><img src="assets/img/cl2.png" alt="사진2"></div>
+            <div class="slider-item"><img src="assets/img/cl3.png" alt="사진3"></div>
+            <div class="slider-item"><img src="assets/img/cl4.png" alt="사진4"></div>
+            <div class="slider-item"><img src="assets/img/cl5.png" alt="사진4"></div>
+            <div class="slider-item"><img src="assets/img/cl6.png" alt="사진4"></div>
+            <div class="slider-item"><img src="assets/img/cl7.png" alt="사진4"></div>
+            <div class="slider-item"><img src="assets/img/cl8.png" alt="사진4"></div>
+            <div class="slider-item"><img src="assets/img/cl9.png" alt="사진4"></div>
+            <div class="slider-item"><img src="assets/img/cl10.png" alt="사진4"></div>
+
+              
+        </div>
+    </div>
+
+    <button class="slider-btn btn-right" onclick="moveSlider(1)">&#10095;</button>
+
+    <script>
+        let currentIndex = 0;
+        const track = document.getElementById('sliderTrack');
+        const slides = track.children;
+        const totalSlides = slides.length;
+
+        function updateSlider() {
+            for (let i = 0; i < totalSlides; i++) {
+                slides[i].classList.remove('active');
+            }
+            slides[currentIndex].classList.add('active');
+
+            const containerWidth = document.querySelector('.slider-container').offsetWidth;
+            const slideWidth = slides[0].offsetWidth;
+            const offset = (containerWidth / 2) - (slideWidth / 2) - (currentIndex * slideWidth);
+            
+            track.style.transform = `translateX(${offset}px)`;
+        }
+
+        function moveSlider(direction) {
+            currentIndex += direction;
+            if (currentIndex >= totalSlides) {
+                currentIndex = 0;
+            } else if (currentIndex < 0) {
+                currentIndex = totalSlides - 1;
+            }
+            updateSlider();
+        }
+
+        window.addEventListener('load', updateSlider);
+        window.addEventListener('resize', updateSlider);
+    </script>
+
+</div>
+
