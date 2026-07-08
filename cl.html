@@ -193,7 +193,81 @@ function showTab(id, btn){
 </html>
 
 
- </style>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>가로 슬라이더</title>
+    <style>
+        /* [1] 전체 슬라이더 감싸는 틀 (화살표와 사진을 한 줄로 정렬) */
+        .slider-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            width: 100%;
+            max-width: 900px; /* 전체 슬라이더 최대 너비 */
+            margin: 50px auto;
+        }
+
+        /* [2] 슬라이더 창 (보여줄 구역 크기 설정 및 넘치는 사진 숨기기) */
+        .slider-container {
+            overflow: hidden; /* ★중요: 이 영역 밖으로 밀려난 사진들은 숨김 */
+            width: 100%;
+            position: relative;
+        }
+
+        /* [3] 사진들이 일렬로 배치되는 실제 트랙 */
+        .slider-track {
+            display: flex; /* ★중요: 밑으로 나열되던 사진들을 가로로 쭉 나열 */
+            transition: transform 0.4s ease-out; /* 이동할 때 스르륵 움직이는 효과 */
+            will-change: transform;
+        }
+
+        /* [4] 개별 사진 아이템 크기 및 간격 설정 */
+        .slider-item {
+            flex: 0 0 200px; /* 사진 한 장의 가로 크기 */
+            padding: 0 10px;  /* 사진 좌우 간격 */
+            box-sizing: border-box;
+            opacity: 0.4;     /* 기본적으로 선택 안 된 사진은 흐리게 */
+            transition: opacity 0.4s ease;
+        }
+
+        /* 현재 중앙에 선택된 사진만 선명하게 강조 */
+        .slider-item.active {
+            opacity: 1; 
+        }
+
+        /* 이미지 원본 비율 유지 스타일 */
+        .slider-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 8px; /* 사진 모서리 살짝 둥글게 */
+        }
+
+        /* [5] 좌우 이동 화살표 버튼 스타일 */
+        .slider-btn {
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            font-size: 20px;
+            cursor: pointer;
+            z-index: 10;
+            border-radius: 50%;
+            margin: 0 15px;
+            transition: background 0.3s;
+        }
+
+        .slider-btn:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+    </style>
+</head>
+<body>
+
+<div class="slider-wrapper">
 
     <button class="slider-btn btn-left" onclick="moveSlider(-1)">&#10094;</button>
 
@@ -208,44 +282,51 @@ function showTab(id, btn){
             <div class="slider-item"><img src="assets/img/cl7.png" alt="사진7"></div>
             <div class="slider-item"><img src="assets/img/cl8.png" alt="사진8"></div>
             <div class="slider-item"><img src="assets/img/cl9.png" alt="사진9"></div>
-                        
         </div>
     </div>
 
     <button class="slider-btn btn-right" onclick="moveSlider(1)">&#10095;</button>
 
-    <script>
-        let currentIndex = 0;
-        const track = document.getElementById('sliderTrack');
-        const slides = track.children;
-        const totalSlides = slides.length;
-
-        function updateSlider() {
-            for (let i = 0; i < totalSlides; i++) {
-                slides[i].classList.remove('active');
-            }
-            slides[currentIndex].classList.add('active');
-
-            const containerWidth = document.querySelector('.slider-container').offsetWidth;
-            const slideWidth = slides[0].offsetWidth;
-            const offset = (containerWidth / 2) - (slideWidth / 2) - (currentIndex * slideWidth);
-            
-            track.style.transform = `translateX(${offset}px)`;
-        }
-
-        function moveSlider(direction) {
-            currentIndex += direction;
-            if (currentIndex >= totalSlides) {
-                currentIndex = 0;
-            } else if (currentIndex < 0) {
-                currentIndex = totalSlides - 1;
-            }
-            updateSlider();
-        }
-
-        window.addEventListener('load', updateSlider);
-        window.addEventListener('resize', updateSlider);
-    </script>
-
 </div>
 
+<script>
+    let currentIndex = 0;
+    const track = document.getElementById('sliderTrack');
+    const slides = track.children;
+    const totalSlides = slides.length;
+
+    function updateSlider() {
+        // 모든 슬라이더에서 active 클래스 제거
+        for (let i = 0; i < totalSlides; i++) {
+            slides[i].classList.remove('active');
+        }
+        // 현재 선택된 슬라이더에만 active 클래스 추가 (선명해짐)
+        slides[currentIndex].classList.add('active');
+
+        // 가운데 정렬을 위한 계산식 구동
+        const containerWidth = document.querySelector('.slider-container').offsetWidth;
+        const slideWidth = slides[0].offsetWidth;
+        const offset = (containerWidth / 2) - (slideWidth / 2) - (currentIndex * slideWidth);
+        
+        // 실제로 트랙을 X축 방향으로 밀어줍니다
+        track.style.transform = `translateX(${offset}px)`;
+    }
+
+    function moveSlider(direction) {
+        currentIndex += direction;
+        // 끝까지 가면 처음으로, 처음에서 뒤로 가면 끝으로 순환 고리
+        if (currentIndex >= totalSlides) {
+            currentIndex = 0;
+        } else if (currentIndex < 0) {
+            currentIndex = totalSlides - 1;
+        }
+        updateSlider();
+    }
+
+    // 화면이 켜지거나 브라우저 크기가 바뀔 때 정렬 맞추기
+    window.addEventListener('load', updateSlider);
+    window.addEventListener('resize', updateSlider);
+</script>
+
+</body>
+</html>
