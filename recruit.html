@@ -132,8 +132,10 @@
 
 /* 이미지 영역 */
 .tab-content{
-    display:flex;
+    display:block;
+    width:100%;
     }
+    
 
 
 /* 이미지 애니메이션 */
@@ -149,21 +151,16 @@
     transform:scale(0.95);
 
     transition:
-        opacity 0.7s ease,
-        transform 0.7s ease;
-
-  }
-
-
+         transition:0.7s;
+}
+  
 /* 활성 이미지 */
 .tab-img.show{
 
+    display:block;
+
     opacity:1;
-    visibility:visible;
-
     transform:scale(1);
-
-    position:relative;
 }
 
 
@@ -188,24 +185,21 @@
 
 function showTab(id, btn){
 
-    // 이미지 변경
-    document.querySelectorAll('.tab-img').forEach(img=>{
-        img.classList.remove('show');
+   document.querySelectorAll('.tab-img, .notice-board').forEach(item=>{
+        item.classList.remove('show');
     });
-
 
     document.getElementById(id).classList.add('show');
 
 
-    // 버튼 active
     document.querySelectorAll('.tab-btn').forEach(b=>{
         b.classList.remove('active');
     });
 
-
     btn.classList.add('active');
 
 }
+
 
 </script>
 
