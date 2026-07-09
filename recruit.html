@@ -17,36 +17,31 @@
  <!-- 채용공고 게시판 -->
     <div id="notice" class="notice-board">
 
-        <table>
-            <thead>
-                <tr>
-                    <th>번호</th>
-                    <th>제목</th>
-                    <th>등록일</th>
-                </tr>
-            </thead>
+         display:none;
 
-            <tbody>
-                <tr>
-                    <td>3</td>
-                    <td>2026년 신입 및 경력사원 채용공고</td>
-                    <td>2026.07.09</td>
-                </tr>
+    width:85%;
+    max-width:1200px;
+    margin:0 auto;
 
-                <tr>
-                    <td>2</td>
-                    <td>웹디자인 및 개발자 모집</td>
-                    <td>2026.06.15</td>
-                </tr>
+    opacity:0;
+    transform:scale(0.95);
 
-                <tr>
-                    <td>1</td>
-                    <td>상시 채용 안내</td>
-                    <td>2026.05.01</td>
-                </tr>
-            </tbody>
+    transition:
+        opacity 0.7s ease,
+        transform 0.7s ease;
+}
 
-        </table>
+
+/* 게시판 활성화 */
+.notice-board.show{
+
+    display:block;
+
+    opacity:1;
+
+    transform:scale(1);
+
+}
 
     </div>
 
