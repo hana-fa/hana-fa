@@ -15,38 +15,76 @@
 
         <img id="process" class="tab-img" src="assets/img/c2.png">
  <!-- 채용공고 게시판 -->
-    <div id="notice" class="notice-board">
+ <!-- 채용공고 게시판 -->
+<div id="notice" class="notice-board">
 
-         display:none;
+    <div class="board-top">
+        <span>Total 0</span>
 
-    width:85%;
-    max-width:1200px;
-    margin:0 auto;
-
-    opacity:0;
-    transform:scale(0.95);
-
-    transition:
-        opacity 0.7s ease,
-        transform 0.7s ease;
-}
+        <select>
+            <option>Newest</option>
+            <option>Oldest</option>
+        </select>
+    </div>
 
 
-/* 게시판 활성화 */
-.notice-board.show{
+    <table class="notice-table">
 
-    display:block;
+        <thead>
+            <tr>
+                <th>Number</th>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Date</th>
+                <th>Votes</th>
+                <th>Views</th>
+            </tr>
+        </thead>
 
-    opacity:1;
 
-    transform:scale(1);
+        <tbody>
 
-}
+            <tr>
+                <td>1</td>
+                <td class="title">
+                    채용공고가 등록되었습니다.
+                </td>
+                <td>관리자</td>
+                <td>2026.07.09</td>
+                <td>0</td>
+                <td>0</td>
+            </tr>
+
+
+        </tbody>
+
+    </table>
+
+
+    <!-- 페이지 -->
+    <div class="paging">
+        <span class="active">1</span>
+    </div>
+
+
+    <!-- 검색 -->
+    <div class="search-box">
+
+        <select>
+            <option>All</option>
+            <option>Title</option>
+            <option>Content</option>
+        </select>
+
+        <input type="text">
+
+        <button>Search</button>
 
     </div>
 
+
 </div>
-   
+  
 
 
 <style>
