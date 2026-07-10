@@ -1,22 +1,17 @@
-```html
 <div class="tab-wrapper">
 
-    <!-- 버튼 -->
     <div class="tab-menu">
         <button class="tab-btn active" onclick="showTab('talent', this)">인재상</button>
         <button class="tab-btn" onclick="showTab('process', this)">채용절차</button>
         <button class="tab-btn" onclick="showTab('notice', this)">채용공고</button>
     </div>
 
-    <!-- 내용 -->
     <div class="tab-content">
 
-        <!-- 이미지 -->
         <img id="talent" class="tab-img show" src="assets/img/c1.png">
 
         <img id="process" class="tab-img" src="assets/img/c2.png">
 
-        <!-- 게시판 -->
         <div id="notice" class="notice-board">
 
             <div class="board-top">
@@ -74,18 +69,12 @@
 
             </div>
 
-        </div> <!-- notice-board -->
-
-    </div> <!-- tab-content -->
-
-</div> <!-- tab-wrapper -->
-
-<style>
+        </div> </div> </div> <style>
 
 /* 전체 */
 .tab-wrapper{
     text-align:center;
-    padding-top:90px;
+    padding-top:120px; /* 💡 홈버튼과 겹치지 않도록 여백을 넓혔습니다. */
 }
 
 /* 버튼 */
@@ -102,6 +91,8 @@
     background:#eee;
     cursor:pointer;
     border-radius:6px;
+    position: relative;
+    z-index: 1000; /* 💡 홈버튼보다 버튼이 위에 오도록 우선순위를 높였습니다. */
 }
 
 .tab-btn.active{
@@ -117,40 +108,21 @@
 
 /* 이미지 */
 .tab-img{
-    display:block;
+    display: none; /* 💡 버그를 일으키던 복잡한 opacity 애니메이션 대신, 확실하게 켜고 끄도록 수정했습니다. */
     width:85%;
     max-width:1200px;
     margin:0 auto;
-
-    opacity:0;
-    visibility:hidden;
-
-    transform:translateY(15px);
-
-    transition:
-        opacity .7s ease,
-        transform .7s ease,
-        visibility 0s linear .7s;
 }
 
 .tab-img.show{
-    opacity:1;
-    visibility:visible;
-
-    transform:translateY(0);
-
-    transition:
-        opacity .7s ease,
-        transform .7s ease;
+    display: block; /* 💡 활성화되면 화면에 나타납니다. */
 }
 
 /* 게시판 */
 .notice-board{
     display:none;
-
     width:85%;
     max-width:1200px;
-
     margin:0 auto;
 }
 
@@ -203,33 +175,34 @@
 </style>
 
 <script>
-
-alert("스크립트 작동");
+// 번거롭던 alert 메시지는 삭제했습니다.
 
 function showTab(id, btn){
 
+    // 모든 이미지 숨기기
     document.querySelectorAll('.tab-img').forEach(function(item){
         item.classList.remove('show');
     });
 
+    // 모든 게시판 숨기기
     document.querySelectorAll('.notice-board').forEach(function(item){
         item.classList.remove('show');
     });
 
+    // 클릭한 탭의 ID를 가진 요소 보여주기
     var target = document.getElementById(id);
-
     if(target){
         target.classList.add('show');
     }
 
+    // 모든 버튼 비활성화
     document.querySelectorAll('.tab-btn').forEach(function(b){
         b.classList.remove('active');
     });
 
+    // 클릭한 버튼만 활성화
     btn.classList.add('active');
-
 }
-
 </script>
 
 <a href="index.html" style="
@@ -254,7 +227,6 @@ function showTab(id, btn){
 
     z-index:999;
     transition:0.2s;
-   ">
+">
     ⌂
 </a>
-
