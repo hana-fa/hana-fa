@@ -74,7 +74,7 @@
 /* 전체 */
 .tab-wrapper{
     text-align:center;
-    padding-top:120px; /* 💡 홈버튼과 겹치지 않도록 여백을 넓혔습니다. */
+    padding-top:120px;
 }
 
 /* 버튼 */
@@ -92,7 +92,7 @@
     cursor:pointer;
     border-radius:6px;
     position: relative;
-    z-index: 1000; /* 💡 홈버튼보다 버튼이 위에 오도록 우선순위를 높였습니다. */
+    z-index: 1000;
 }
 
 .tab-btn.active{
@@ -104,18 +104,28 @@
 .tab-content{
     display:block;
     width:100%;
+    position: relative; /* 💡 사진들이 겹쳐서 부드럽게 전환되도록 설정 */
 }
 
-/* 이미지 */
+/* ✨ 이미지 서서히 나타나는 효과 설정 */
 .tab-img{
-    display: none; /* 💡 버그를 일으키던 복잡한 opacity 애니메이션 대신, 확실하게 켜고 끄도록 수정했습니다. */
+    position: absolute; /* 💡 서서히 나타날 때 자리를 차지하지 않고 자연스럽게 교차되도록 함 */
+    left: 50%;
+    transform: translateX(-50%);
     width:85%;
     max-width:1200px;
     margin:0 auto;
+
+    opacity: 0;            /* 기본 상태: 투명하게 */
+    visibility: hidden;    /* 기본 상태: 숨김 */
+    transition: opacity 0.6s ease, visibility 0.6s ease; /* 0.6초 동안 서서히 전환 */
 }
 
+/* 활성화된 이미지 */
 .tab-img.show{
-    display: block; /* 💡 활성화되면 화면에 나타납니다. */
+    position: relative;    /* 현재 보여야 하는 이미지만 자기 영역을 가짐 */
+    opacity: 1;            /* 보임 */
+    visibility: visible;   /* 클릭 가능 */
 }
 
 /* 게시판 */
@@ -134,7 +144,6 @@
 .board-top{
     display:flex;
     justify-content:space-between;
-
     margin-bottom:30px;
 }
 
@@ -175,11 +184,9 @@
 </style>
 
 <script>
-// 번거롭던 alert 메시지는 삭제했습니다.
-
 function showTab(id, btn){
 
-    // 모든 이미지 숨기기
+    // 모든 이미지 숨기기 (fade-out)
     document.querySelectorAll('.tab-img').forEach(function(item){
         item.classList.remove('show');
     });
@@ -189,7 +196,7 @@ function showTab(id, btn){
         item.classList.remove('show');
     });
 
-    // 클릭한 탭의 ID를 가진 요소 보여주기
+    // 클릭한 탭 보여주기 (fade-in)
     var target = document.getElementById(id);
     if(target){
         target.classList.add('show');
