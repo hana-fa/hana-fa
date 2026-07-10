@@ -104,28 +104,30 @@
 .tab-content{
     display:block;
     width:100%;
+    min-height:600px;
     position: relative; /* 💡 사진들이 겹쳐서 부드럽게 전환되도록 설정 */
 }
 
 /* ✨ 이미지 서서히 나타나는 효과 설정 */
 .tab-img{
-    position: absolute; /* 💡 서서히 나타날 때 자리를 차지하지 않고 자연스럽게 교차되도록 함 */
-    left: 50%;
-    transform: translateX(-50%);
+      position:absolute;
+    left:50%;
+    top:0;
+    transform:translateX(-50%);
+
     width:85%;
     max-width:1200px;
-    margin:0 auto;
 
-    opacity: 0;            /* 기본 상태: 투명하게 */
-    visibility: hidden;    /* 기본 상태: 숨김 */
-    transition: opacity 0.6s ease, visibility 0.6s ease; /* 0.6초 동안 서서히 전환 */
+    opacity:0;
+    visibility:hidden;
+
+    transition:opacity 0.6s ease, visibility 0.6s ease;
 }
 
 /* 활성화된 이미지 */
 .tab-img.show{
-    position: relative;    /* 현재 보여야 하는 이미지만 자기 영역을 가짐 */
-    opacity: 1;            /* 보임 */
-    visibility: visible;   /* 클릭 가능 */
+     opacity:1;
+    visibility:visible;
 }
 
 /* 게시판 */
