@@ -11,7 +11,9 @@ fetch("posts.json")
             <td>${post.id}</td>
 
             <td class="title">
-                ${post.title}
+                <a href="view.html?id=${post.id}">
+${post.title}
+</a>
             </td>
 
             <td>
