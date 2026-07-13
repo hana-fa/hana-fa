@@ -12,9 +12,8 @@ fetch("posts.json")
 
             <td class="title">
                 <a href="view.html?id=${post.id}">
-<a href="view.html?id=${post.id}">
-    ${post.title}
-</a>
+                    ${post.title}
+                </a>
             </td>
 
             <td>
@@ -29,7 +28,6 @@ fetch("posts.json")
         `;
 
     });
-
 
     document.getElementById("post-list").innerHTML = list;
 
